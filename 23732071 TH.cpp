@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<conio.h>
+#define MAX 100
 
 
 struct Date
@@ -27,34 +28,43 @@ void Xuat1sv(SV x);
 void Nhapsl(int &n);
 void Nhapds(SV a[],int n);
 void Xuatds(SV a[],int n);
-
+void Xuatds5(SV a[], int n);
+void XuatdsCNTT(SV a[], int n);
 
 int main()
 {
-	int a=0;
+	SV a[MAX];
+	int chon=0;
 	int n=0;
 	printf("Hay nhap so luong SV: "); Nhapsl(n);
 	do{
 		printf("1. Nhap danh sach sinh vien.\n");
 		printf("2. Xuat danh sach sinh vien.\n");
-		printf("3. Xuat danh sach sinh vien.\n");
-		printf("4. Xuat danh sach sinh vien.\n");
+		printf("3. Xuat danh sach sinh vien dtb > 5.\n");
+		printf("4. Xuat danh sach sinh vien thuoc nganh cntt.\n");
 		printf("5. Xuat danh sach sinh vien.\n");
 		printf("6. Xuat danh sach sinh vien.\n");
 		printf("7. Xuat danh sach sinh vien.\n");
 		printf("8. Xuat danh sach sinh vien.\n");
 		printf("9. Xuat danh sach sinh vien.\n");
-		printf("0. Thoat.\n");
-		printf("Chon:"); scanf("%d",&a);
-		switch(a)
+		printf("0. Ket thuc.\n");
+		printf("Chon:"); scanf("%d",&chon);
+		switch(chon)
 		{
 			case 1:
 			{
-					
-			}break;
+			Nhapds(a,n);		
+			}
+			break;
 			case 2:
+			{
+			Xuatds(a,n);	
+			}
 			break;
 			case 3:
+			{
+			Xuatds5(a,n);
+			}
 			break;
 			case 4:
 			break;
@@ -71,8 +81,7 @@ int main()
 			default:
 			break;
 		}
-		printf("Chon:"); scanf("%d",&a);
-	}while(a!=0&&a>0&&a<10);
+	}while(chon!=0&&chon>0&&chon<10);
 }
 void NhapNgaySinh(Date &d)
 {
@@ -104,7 +113,7 @@ void Nhap1sv (SV &x)
 }
 void Xuat1sv (SV x)
 {
-	printf("\n%-11s\t-30s\t",x.msv, x.hoten);
+	printf("\n%-11s\t%30s\t",x.msv, x.hoten);
 	if (x.gt=='x') printf("nu\t");
 	else printf("nam\t");
 	XuatNgaySinh(x.ns);
@@ -124,7 +133,7 @@ void Nhapds(SV a[],int n)
 	printf("NHAP DANH SACH SINH VIEN-------\n");
 	for (int i=0;i<n;i++)
 	{
-		printf("nhap sinh vien thu %d:",i+1);
+		printf("nhap sinh vien thu %d:\n",i+1);
 		Nhap1sv(a[i]);
 	}
 }
@@ -134,3 +143,18 @@ void Xuatds(SV a[], int n)
 	for(int i=0;i<n;i++)
 		Xuat1sv(a[i]);
 }
+void Xuatds5(SV a[], int n)
+{
+	printf("DANH SACH SINH VIEN DTB > 5---------");
+	for(int i=0;i<n;i++)
+		if(a[i].dtb>5)
+		Xuat1sv(a[i]);
+}
+void XuatdsCNTT(SV a[], int n)
+{
+	printf("DANH SACH SINH VIEN DTB > 5---------");
+	for(int i=0;i<n;i++)
+		if(a[i].msv==CNTT) // DOI LAI THANH CHECK A B
+		Xuat1sv(a[i]);
+}
+
